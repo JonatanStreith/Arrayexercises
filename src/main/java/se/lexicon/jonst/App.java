@@ -27,7 +27,11 @@ public class App {
         //removeDuplicates(new int[]{20, 20, 40, 20, 30, 40, 50, 60, 50});
         //addElementToArray(new int[]{20, 20, 40, 20, 30, 40, 50, 60, 50}, 15);
         //multiplicationTable();
-        askForNumber();
+        //askForNumber();
+        //diagonalValues();
+        sortArrayEvensOrOdds(new int[]{56,23,16,78,99,43,20});
+
+
 
         inputReader.close();
     }
@@ -44,14 +48,14 @@ public class App {
         return inputReader.nextLine();
     }
 
-    public static int[] reverseArray(int[] theArray){
+    public static int[] reverseArray(int[] theArray) {
         int tempValue = 0;
 
-        for(int i = 0; i<theArray.length/2; i++){
+        for (int i = 0; i < theArray.length / 2; i++) {
 
-            tempValue = theArray[theArray.length -1 -i];    //Safe-store the number opposite the current one
+            tempValue = theArray[theArray.length - 1 - i];    //Safe-store the number opposite the current one
 
-            theArray[theArray.length -1 -i] = theArray[i];  //Put the current one in opposite spot
+            theArray[theArray.length - 1 - i] = theArray[i];  //Put the current one in opposite spot
 
             theArray[i] = tempValue;    //Put safe-stored number in current one
         }
@@ -59,7 +63,6 @@ public class App {
 
         return theArray;
     }
-
 
 
     public static int[] writeFirstArray(int[] numArray) {
@@ -196,6 +199,41 @@ public class App {
         System.out.println("Reverse guesses: " + Arrays.toString(reverseArray(numbersCollection)));
 
     }
+
+    public static void diagonalValues() {
+        int[][] twoDee = {{56, 47, 34, 15}, {78, 39, 11, 23}, {90, 21, 37, 63}, {12, 52, 98, 76}};
+
+        for (int[] row : twoDee)
+            System.out.println(Arrays.toString(row));
+
+        System.out.print("Diagonal values:");
+
+        for(int i = 0; i<twoDee.length; i++)
+            System.out.print(" "+ twoDee[i][i]);
+    }
+
+    public static void sortArrayEvensOrOdds(int[] startArray){
+        int foundEvens = 0;
+        int foundOdds = 0;
+        int[] finishedArray = new int[startArray.length];
+
+        System.out.println("Unsorted array: " +Arrays.toString(startArray));
+
+
+        for (int i = 0; i < startArray.length; i++) {
+            if(startArray[i]%2 == 1){   //Is odd number
+                finishedArray[foundOdds] = startArray[i];
+                foundOdds++;
+            }
+            else{                       //Is even number
+                finishedArray[finishedArray.length- foundEvens -1] = startArray[i];
+                foundEvens++;
+            }
+        }
+        System.out.println("Sorted array: " +Arrays.toString(finishedArray));
+
+    }
+
 
 }
 
